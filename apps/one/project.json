@@ -10,16 +10,23 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/one/browser/browser",
+        "outputPath": "dist/apps/one/browser",
         "index": "apps/one/src/index.html",
         "main": "apps/one/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/one/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "optimization": { 
+          "styles": 
+            { 
+              "inlineCritical": false 
+            } 
+        },
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/one/public"
+            "input": "apps/one/src/assets",
+            "output": "assets"
           },
           {
             "glob": "**/*.svg",
@@ -222,7 +229,7 @@
       "dependsOn": ["build"],
       "executor": "@angular-devkit/build-angular:server",
       "options": {
-        "outputPath": "dist/apps/one/browser/server",
+        "outputPath": "dist/apps/one/server",
         "main": "apps/one/server.ts",
         "tsConfig": "apps/one/tsconfig.server.json",
         "inlineStyleLanguage": "scss"
