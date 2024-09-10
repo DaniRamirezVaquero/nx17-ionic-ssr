@@ -6,9 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
-import { MylibComponent } from '@nx17-ionic-ssr/mylib';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { MyComponentComponent } from "../../../../../mylib/src/lib/my-component/my-component.component";
+import { MiLib1Module } from '@nx17-ionic-ssr/miLib1';
 
 @NgModule({
   imports: [
@@ -17,8 +15,7 @@ import { MyComponentComponent } from "../../../../../mylib/src/lib/my-component/
     IonicModule,
     MessageComponentModule,
     HomePageRoutingModule,
-    MylibComponent,
-    MyComponentComponent
+    MiLib1Module
 ],
   declarations: [HomePage],
 })

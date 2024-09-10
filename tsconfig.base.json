@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx17-ionic-ssr/mylib": ["mylib/src/index.ts"]
+      "@nx17-ionic-ssr/miLib1": ["libs/miLib1/src/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]
