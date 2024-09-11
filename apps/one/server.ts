@@ -6,6 +6,7 @@ import * as express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import AppServerModule from './src/main.server';
+import { hydrateDocument } from '@ionic/core/hydrate';
 
 
 // The Express app is exported so that it can be used by serverless Functions.
