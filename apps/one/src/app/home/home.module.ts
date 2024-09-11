@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +18,9 @@ import { MiLib1Module } from '@nx17-ionic-ssr/miLib1';
     MiLib1Module
 ],
   declarations: [HomePage],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class HomePageModule {}
 
