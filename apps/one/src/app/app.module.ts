@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
   BrowserModule,
-  provideClientHydration,
+  //provideClientHydration,
 } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
