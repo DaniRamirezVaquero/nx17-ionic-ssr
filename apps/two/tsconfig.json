@@ -9,7 +9,9 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "files": [],
+  "files": [
+    "src/polyfills.ts"
+  ],
   "include": [],
   "references": [
     {

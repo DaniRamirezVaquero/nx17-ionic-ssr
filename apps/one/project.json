@@ -100,13 +100,16 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "builder": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "one:build:production"
         },
         "development": {
           "buildTarget": "one:build:development"
+        },
+        "ci": {
+          "progress": false
         }
       },
       "defaultConfiguration": "development"
@@ -225,8 +228,93 @@
         }
       }
     },
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/one/browser",
+        "index": "apps/one/src/index.html",
+        "main": "apps/one/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/one/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/one/public"
+          },
+          {
+            "glob": "**/*.svg",
+            "input": "node_modules/ionicons/dist/ionicons/svg",
+            "output": "./svg"
+          }
+        ],
+        "styles": [
+          "apps/one/src/styles.scss",
+          {
+            "input": "apps/one/src/theme/variables.scss"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/core.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/normalize.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/structure.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/typography.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/display.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/padding.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/float-elements.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/text-alignment.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/text-transformation.css"
+          },
+          {
+            "input": "node_modules/@ionic/angular/css/flex-utils.css"
+          }
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
     "server": {
-      "dependsOn": ["build"],
       "executor": "@angular-devkit/build-angular:server",
       "options": {
         "outputPath": "dist/apps/one/server",
@@ -236,7 +324,13 @@
       },
       "configurations": {
         "production": {
-          "outputHashing": "media"
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "src/environments/environment.ts",
+              "with": "src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
@@ -244,7 +338,8 @@
           "sourceMap": true,
           "extractLicenses": false,
           "vendorChunk": true
-        }
+        },
+        "ci": {}
       },
       "defaultConfiguration": "production"
     },
